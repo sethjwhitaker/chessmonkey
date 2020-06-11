@@ -147,7 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="chessmonkey.cpp" />
+    <ClCompile Include="chessmonkey\src\chessmonkey.cpp" />
+    <ClCompile Include="chessmonkey\src\Game.cpp" />
+    <ClCompile Include="chessmonkey\src\Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="chessmonkey\src\Game.h" />
+    <ClInclude Include="chessmonkey\src\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
