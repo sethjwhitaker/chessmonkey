@@ -17,13 +17,11 @@ int main() {
 
 	cout << "Welcome to Chess Monkey!\n\n";
 	
-	Board b = Board();
+	Game game = Game();
 
-	auto bs = b.getBoardState();
+	game.startGame();
 
-	for (auto i = bs.begin(); i != bs.end(); i++) {
-		cout << (int)i->second<< " " << i->first.first << i->first.second  << endl;
-	}
+	cout << game.getBoard();
 
 }
 

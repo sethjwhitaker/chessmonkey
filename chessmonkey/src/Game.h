@@ -8,38 +8,40 @@
 
 #include <utility>
 #include <list>
+#include <string>
 
-// All the types of pieces in chess
-enum class Piece {
-	_, p, K, Q, B, N, R
-};
+#include "Board.h"
 
-typedef std::pair<char, int> Square;
+
 
 // Move struct (might change to a class)
 struct Move {
-	Square destination;
+	std::string destination;
 	Piece piece;
 	bool captures;
-	Square location;	// Sometimes necessary if two pieces can land on the same square
+	std::string location;	// Sometimes necessary if two pieces can land on the same square
 };
 
 class Game {
 
 private:
 
-	unsigned short currentTurn;
+	unsigned short currentMove;
 	std::list<Move> movesMade;	// A list of all the moves made this game
 
-	bool blackCanCastle, whiteCanCastle; 
+	bool blackCanCastle, whiteCanCastle; // whether each player can castle
+
+	Board board;
 	
 
 public:
 
-	Game() : currentTurn(1), blackCanCastle(1), whiteCanCastle(1) {}
+	Game() : currentMove(1), blackCanCastle(1), whiteCanCastle(1) {}
 	~Game() {}
 
 	void startGame();
+
+	Board& getBoard();
 
 };
 

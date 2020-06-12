@@ -8,17 +8,21 @@
 //		default constructor
 
 #include <map>
+#include <fstream>
+#include <string>
 
-#include "Game.h"
+#include "Piece.h"
 
 class Board {
 
 private:
-	std::map<Square, Piece> boardState; // Each Location has a piece and a square.
+	std::map<std::string, Piece> boardState; // Each Location has a piece and a square.
 
 public:
 	Board(); // Set up squares
 
-	std::map<Square, Piece>& getBoardState();
+	std::map<std::string, Piece>& getBoardState();
+
+	friend std::ostream& operator <<(std::ostream& out, Board& b);
 	
 };

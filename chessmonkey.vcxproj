@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="chessmonkey\src\Board.h" />
     <ClInclude Include="chessmonkey\src\Game.h" />
+    <ClInclude Include="chessmonkey\src\Piece.h" />
     <ClInclude Include="chessmonkey\src\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
