@@ -24,12 +24,18 @@
     <ClCompile Include="chessmonkey\src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="chessmonkey\src\Board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chessmonkey\src\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="chessmonkey\src\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="chessmonkey\src\Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
