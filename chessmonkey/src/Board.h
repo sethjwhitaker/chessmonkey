@@ -16,12 +16,14 @@
 class Board {
 
 private:
-	std::map<std::string, Piece> boardState; // Each Location has a piece and a square.
+	
+	std::map<std::string, Piece*> boardState; // Each Location has a piece and a square
+	Piece *pieces[32];
 
 public:
 	Board(); // Set up squares
 
-	std::map<std::string, Piece>& getBoardState();
+	std::map<std::string, Piece*>& getBoardState();
 
 	friend std::ostream& operator <<(std::ostream& out, Board& b);
 	

@@ -9,17 +9,16 @@
 #include <utility>
 #include <list>
 #include <string>
+#include <time.h>
 
 #include "Board.h"
-
-
+#include "Player.h"
 
 // Move struct (might change to a class)
 struct Move {
 	std::string destination;
 	Piece piece;
 	bool captures;
-	std::string location;	// Sometimes necessary if two pieces can land on the same square
 };
 
 class Game {
@@ -30,18 +29,35 @@ private:
 	std::list<Move> movesMade;	// A list of all the moves made this game
 
 	bool blackCanCastle, whiteCanCastle; // whether each player can castle
+	bool whitesTurn; // True if white's turn false if black's turn
 
-	Board board;
+	Board board; // Board holding board state data
+
+	Player *black, *white;
+	
 	
 
 public:
 
-	Game() : currentMove(1), blackCanCastle(1), whiteCanCastle(1) {}
+	Game() : currentMove(1), blackCanCastle(1), whiteCanCastle(1), whitesTurn(1), 
+		board(Board()), black(nullptr), white(nullptr) {}
+
 	~Game() {}
+
+	void setPlayer(Player& player); // Queues player into game. Picks random color.
+	void setPlayer(Player& player, std::string color); // Queues player into game, with color preference.
+
+	bool isMyTurn(std::string color);
+
+	Board& getBoard();
+
+	Player& getBlackPlayer();
+
+	Player& getWhitePlayer();
 
 	void startGame();
 
-	Board& getBoard();
+	bool movePiece(std::string move, std::string playerColor); // Player color is a temporary way to identify which player is calling the function
 
 };
 

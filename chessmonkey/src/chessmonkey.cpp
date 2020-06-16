@@ -16,10 +16,20 @@ int main() {
 	using namespace std;
 
 	cout << "Welcome to Chess Monkey!\n\n";
+
 	
 	Game game = Game();
 
-	game.startGame();
+	Player p1 = Player();
+	Player p2 = Player();
+
+	//cout << rand();
+
+	game.setPlayer(p1);
+	game.setPlayer(p2);
+
+	cout << "Black: "<< game.getBlackPlayer().getColor() << "\nWhite: "<< game.getWhitePlayer().getColor();
+
 
 	cout << game.getBoard();
 

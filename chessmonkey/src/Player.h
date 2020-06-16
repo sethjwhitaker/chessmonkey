@@ -15,11 +15,22 @@
 
 #include <vector>
 #include <utility>
+#include <string>
 
 class Player {
 
 private:
 	std::vector<std::pair<char, int>> possibleMoves;
+	std::string color;
+
+public:
+	std::string getColor() {
+		return color;
+	}
+	void setColor(std::string newColor) {
+		color = newColor;
+	}
+
 
 };
 
