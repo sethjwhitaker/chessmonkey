@@ -151,6 +151,7 @@
     <ClCompile Include="chessmonkey\src\chessmonkey.cpp" />
     <ClCompile Include="chessmonkey\src\Game.cpp" />
     <ClCompile Include="chessmonkey\src\Player.cpp" />
+    <ClCompile Include="chessmonkey\src\Piece.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chessmonkey\src\Board.h" />

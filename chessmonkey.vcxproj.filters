@@ -27,6 +27,9 @@
     <ClCompile Include="chessmonkey\src\Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="chessmonkey\src\Piece.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chessmonkey\src\Game.h">

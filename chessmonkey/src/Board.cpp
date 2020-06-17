@@ -1,29 +1,7 @@
 #include "Board.h"
 #include <iostream>
 
-namespace {
-	char pieceToChar(TypeofPiece p) {
 
-		switch (p) {
-		case TypeofPiece::_:
-			return ' ';
-		case TypeofPiece::p:
-			return 'P';
-		case TypeofPiece::K:
-			return 'K';
-		case TypeofPiece::Q:
-			return 'Q';
-		case TypeofPiece::B:
-			return 'B';
-		case TypeofPiece::N:
-			return 'N';
-		case TypeofPiece::R:
-			return 'R';
-		default:
-			return ' ';
-		}
-	}
-}
 
 Board::Board() {
 	// Set up squares
@@ -113,6 +91,7 @@ Board::Board() {
 		Piece* p = new Piece;
 		*p = { TypeofPiece::p, false, s };
 		boardState[s] = p;
+		pieces[j++] = p;
 	}
 	// King
 	{
@@ -171,11 +150,39 @@ Board::Board() {
 	
 }
 
+Board::~Board() {
+	//free memory
+	for (int i = 0; i < 32; i++)
+		delete pieces[i];
+	
+}
+
 std::map<std::string, Piece*>& Board::getBoardState() {
 
 	return boardState;
 }
 
+Piece** Board::getPieces() {
+	return pieces;
+}
+
+void Board::movePiece(Move move) {
+
+	for (int i = 0; i < 32; i++) {
+		// Because Game object does the logic calculations, this just moves the piece 
+		// based on starting location and destination
+		Piece *currentPiece = pieces[i];
+		if (currentPiece->square == move.piece.square) {
+			currentPiece->square = move.destination;
+			boardState[move.destination] = currentPiece;
+			boardState[move.piece.square] = nullptr;
+		} else if (currentPiece->square == move.destination) {
+			currentPiece->square = "";
+		}
+
+	}
+
+}
 
 // Output the board state
 std::ostream& operator <<(std::ostream& out, Board& b) {
@@ -195,9 +202,9 @@ std::ostream& operator <<(std::ostream& out, Board& b) {
 
 			// Figure out color of piece
 			char color = ' '; // no piece is a space
-			char piece = ' ';
+			TypeofPiece piece = TypeofPiece::_;
 			if (b.boardState[square] != nullptr) {
-				piece = pieceToChar(b.boardState[square]->type);
+				piece = b.boardState[square]->type;
 				b.boardState[square]->isBlack ? color = 'b' : color = 'w'; // black is b white is w
 			}
 

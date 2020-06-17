@@ -14,12 +14,9 @@
 #include "Board.h"
 #include "Player.h"
 
-// Move struct (might change to a class)
-struct Move {
-	std::string destination;
-	Piece piece;
-	bool captures;
-};
+class Player;
+
+
 
 class Game {
 
@@ -57,7 +54,7 @@ public:
 
 	void startGame();
 
-	bool movePiece(std::string move, std::string playerColor); // Player color is a temporary way to identify which player is calling the function
+	bool movePiece(std::string moveString, const Player* player); // Player color is a temporary way to identify which player is calling the function
 
 };
 

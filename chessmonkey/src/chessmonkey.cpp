@@ -17,19 +17,23 @@ int main() {
 
 	cout << "Welcome to Chess Monkey!\n\n";
 
-	
+	srand(time(0)); // initialize random seed
+
 	Game game = Game();
 
 	Player p1 = Player();
 	Player p2 = Player();
-
-	//cout << rand();
 
 	game.setPlayer(p1);
 	game.setPlayer(p2);
 
 	cout << "Black: "<< game.getBlackPlayer().getColor() << "\nWhite: "<< game.getWhitePlayer().getColor();
 
+	cout << game.getBoard();
+
+	cout << endl << p1.movePiece("Na3");
+
+	cout << endl << p2.movePiece("Na3");
 
 	cout << game.getBoard();
 

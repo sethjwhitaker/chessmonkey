@@ -17,20 +17,28 @@
 #include <utility>
 #include <string>
 
+#include "Game.h"
+
+class Game;
+
 class Player {
 
 private:
 	std::vector<std::pair<char, int>> possibleMoves;
 	std::string color;
 
+	Game* game;
+
 public:
-	std::string getColor() {
+	std::string getColor() const {
 		return color;
 	}
 	void setColor(std::string newColor) {
 		color = newColor;
 	}
+	void setGame(Game* newGame);
 
+	bool movePiece(std::string moveString);
 
 };
 

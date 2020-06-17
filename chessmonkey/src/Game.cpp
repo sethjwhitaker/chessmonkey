@@ -1,13 +1,7 @@
 #include "Game.h"
+#include <iostream>
 
 namespace {
-
-	Move moveStringParse(std::string moveString, bool isBlack) {
-		Move move;
-		move.piece = { charToPieceType(moveString[0]), isBlack, moveString.substr(1, 2) }; // change to type of piece
-	
-		
-	}
 
 	TypeofPiece charToPieceType(char c) {
 
@@ -29,16 +23,45 @@ namespace {
 		}
 	}
 
+	Move moveStringParse(std::string moveString, bool isBlack) {
+		using std::cout;
+		Move move;
+		move.destination = moveString.substr(1, 2);
+		move.piece = { charToPieceType(moveString[0]), isBlack, "" }; // change to type of piece
+		move.captures = 0;
+	
+		cout << move;
+
+		return move;
+	}
+
+	bool verifyMove(Move& move, Board& board) {
+
+		Piece** pieces = board.getPieces();
+		Piece* target = nullptr;
+		for (int i = 0; i < 32; i++) {
+			Piece* currentPiece = pieces[i];
+			if (currentPiece != nullptr && move.piece.isBlack == currentPiece->isBlack
+				&& currentPiece->type == move.piece.type) {
+
+				move.piece.square = currentPiece->square;
+			}
+		}
+
+		return 1;
+	}
+
 }
 
 void Game::setPlayer(Player& player) {
+
+	player.setGame(this); // Assign Game to player
 	
 	// Assign Player to game
 	
 	if (white == nullptr && black == nullptr) { 
 		// If neither white or black have been chosen yet
 		// Pick random color for player
-		srand(2135);
 		int r = rand();
 		if (r % 2 == 0) {
 			black = &player;
@@ -83,16 +106,25 @@ void Game::startGame() {
 	board = Board();
 }
 
-bool Game::movePiece(std::string moveString, std::string playerColor) {
-
-	// Make sure it is the player's turn
-	if (playerColor == "black" && whitesTurn) {
-		return false;
-	} else if (playerColor == "white" && !whitesTurn) {
+bool Game::movePiece(std::string moveString, const Player* player) {
+	bool isBlack;
+	// Make sure it is the player's turn and figure out the color
+	if (player->getColor() == "black") {
+		if(whitesTurn)
+			return false;
+		isBlack = 1;
+	} else if (player->getColor() == "white") {
+		if (!whitesTurn)
+			return false;
+		isBlack = 0;
+	} else {
 		return false;
 	}
 
+	// parse move string
+	Move move = moveStringParse(moveString, isBlack);
 
+	if(verifyMove(move, board)) board.movePiece(move);
 
 	return true;
 }
