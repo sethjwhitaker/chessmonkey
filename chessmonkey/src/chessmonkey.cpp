@@ -24,18 +24,9 @@ int main() {
 	Player p1 = Player();
 	Player p2 = Player();
 
-	game.setPlayer(p1);
-	game.setPlayer(p2);
+	game.setPlayer(p1, "white");
+	game.setPlayer(p2, "black");
 
-	cout << "Black: "<< game.getBlackPlayer().getColor() << "\nWhite: "<< game.getWhitePlayer().getColor();
-
-	cout << game.getBoard();
-
-	cout << endl << p1.movePiece("Na3");
-
-	cout << endl << p2.movePiece("Na3");
-
-	cout << game.getBoard();
 
 }
 

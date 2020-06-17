@@ -10,6 +10,7 @@
 #include <list>
 #include <string>
 #include <time.h>
+#include <vector>
 
 #include "Board.h"
 #include "Player.h"
