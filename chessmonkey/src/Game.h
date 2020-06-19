@@ -53,9 +53,9 @@ public:
 
 	Player& getWhitePlayer();
 
-	void startGame();
-
 	bool movePiece(std::string moveString, const Player* player); // Player color is a temporary way to identify which player is calling the function
 
 };
+
+Move moveStringParse(std::string moveString, PieceColor color);
 

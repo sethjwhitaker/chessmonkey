@@ -7,143 +7,139 @@ Board::Board() {
 	// Set up squares
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			std::string square = "";
-			square.push_back(i + 97);
-			square.push_back(j + 49);
+			Square square = { i + 97, j + 49 };
 										   
 			boardState.insert({square, nullptr }); // insert square and empty piece into boardState map
 		}
 	}
+
+	// TODO REFACTOR for pieces to have square structs
 
 	// Set Up Pieces
 	int j = 0;
 	// Black pieces
 	// Pawns
 	for (int i = 0; i < 8; i++) {
-		std::string s = "";
-		s.push_back(i + 97);
-		s.push_back(7 + 48);
+		Square s = { i + 97, 7 + 48 };
 		Piece *p = new Piece;
-		*p = { TypeofPiece::p, true, s };
+		*p = { TypeofPiece::p, PieceColor::Black, s };
 		boardState[s] = p;
 		pieces[j++] = p;
 	}
 	// King
 	{
 		Piece *p = new Piece;
-		*p = { TypeofPiece::K, true, "e8" };
-		boardState["e8"] = p;
+		*p = { TypeofPiece::K, PieceColor::Black, Square {'e', '8'} };
+		boardState[Square{ 'e', '8' }] = p;
 		pieces[j++] = p;
 	}
 	//Queen
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::Q, true, "d8" };
-		boardState["d8"] = p;
+		*p = { TypeofPiece::Q, PieceColor::Black, Square {'d', '8'} };
+		boardState[Square{ 'd', '8' }] = p;
 		pieces[j++] = p;
 	}
 	// Bishops
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::B, true, "c8" };
-		boardState["c8"] = p;
+		*p = { TypeofPiece::B, PieceColor::Black, Square {'c', '8'} };
+		boardState[Square{ 'c', '8' }] = p;
 		pieces[j++] = p;
 	}
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::B, true, "f8" };
-		boardState["f8"] = p;
+		*p = { TypeofPiece::B, PieceColor::Black, Square {'f', '8'} };
+		boardState[Square{ 'f', '8' }] = p;
 		pieces[j++] = p;
 	}
 	// Knights
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::N, true, "b8" };
-		boardState["b8"] = p;
+		*p = { TypeofPiece::N, PieceColor::Black, Square {'b', '8'} };
+		boardState[Square{ 'b', '8' }] = p;
 		pieces[j++] = p;
 	}
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::N, true, "g8" };
-		boardState["g8"] = p;
+		*p = { TypeofPiece::N, PieceColor::Black, Square {'g', '8'} };
+		boardState[Square{ 'g', '8' }] = p;
 		pieces[j++] = p;
 	}
 	// Rooks
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::R, true, "a8" };
-		boardState["a8"] = p;
+		*p = { TypeofPiece::R, PieceColor::Black, Square {'a', '8'} };
+		boardState[Square{ 'a', '8' }] = p;
 		pieces[j++] = p;
 	}
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::R, true, "h8" };
-		boardState["h8"] = p;
+		*p = { TypeofPiece::R, PieceColor::Black, Square {'h', '8'} };
+		boardState[Square{ 'h', '8' }] = p;
 		pieces[j++] = p;
 	}
 
 	// White Pieces
 	// Pawns
 	for (int i = 0; i < 8; i++) {
-		std::string s = "";
-		s.push_back(i + 97);
-		s.push_back(2 + 48);
+		Square s = { i + 97, 2 + 48 };
 		Piece* p = new Piece;
-		*p = { TypeofPiece::p, false, s };
+		*p = { TypeofPiece::p, PieceColor::White, s };
 		boardState[s] = p;
 		pieces[j++] = p;
 	}
 	// King
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::K, false, "e1" };
-		boardState["e1"] = p;
+		*p = { TypeofPiece::K, PieceColor::White, Square { 'e', '1'} };
+		boardState[Square{ 'e', '1' }] = p;
 		pieces[j++] = p;
 	}
 	//Queen
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::Q, false, "d1" };
-		boardState["d1"] = p;
+		*p = { TypeofPiece::Q, PieceColor::White, Square { 'd', '1'} };
+		boardState[Square{ 'd', '1' }] = p;
 		pieces[j++] = p;
 	}
 	// Bishops
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::B, false, "c1" };
-		boardState["c1"] = p;
+		*p = { TypeofPiece::B, PieceColor::White, Square { 'c', '1'} };
+		boardState[Square{ 'c', '1' }] = p;
 		pieces[j++] = p;
 	}
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::B, false, "f1" };
-		boardState["f1"] = p;
+		*p = { TypeofPiece::B, PieceColor::White, Square { 'f', '1'} };
+		boardState[Square{ 'f', '1' }] = p;
 		pieces[j++] = p;
 	}
 	// Knights
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::N, false, "b1" };
-		boardState["b1"] = p;
+		*p = { TypeofPiece::N, PieceColor::White, Square { 'b', '1'} };
+		boardState[Square{ 'b', '1' }] = p;
 		pieces[j++] = p;
 	}
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::N, false, "g1" };
-		boardState["g1"] = p;
+		*p = { TypeofPiece::N, PieceColor::White, Square { 'g', '1'} };
+		boardState[Square{ 'g', '1' }] = p;
 		pieces[j++] = p;
 	}
 	// Rooks
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::R, false, "a1" };
-		boardState["a1"] = p;
+		*p = { TypeofPiece::R, PieceColor::White, Square { 'a', '1'} };
+		boardState[Square{ 'a', '1' }] = p;
 		pieces[j++] = p;
 	}
 	{
 		Piece* p = new Piece;
-		*p = { TypeofPiece::R, false, "h1" };
-		boardState["h1"] = p;
+		*p = { TypeofPiece::R, PieceColor::White, Square { 'h', '1'} };
+		boardState[Square{ 'h', '1' }] = p;
 		pieces[j++] = p;
 	}
 	
@@ -152,12 +148,13 @@ Board::Board() {
 
 Board::~Board() {
 	//free memory
+	
 	for (int i = 0; i < 32; i++)
 		delete pieces[i];
-	
+	std::cout << "All pieces deleted!";
 }
 
-std::map<std::string, Piece*>& Board::getBoardState() {
+std::map<Square, Piece*>& Board::getBoardState() {
 
 	return boardState;
 }
@@ -177,7 +174,7 @@ void Board::movePiece(Move move) {
 			boardState[move.destination] = currentPiece;
 			boardState[move.piece.square] = nullptr;
 		} else if (currentPiece->square == move.destination) {
-			currentPiece->square = "";
+			currentPiece->square = Square();
 		}
 
 	}
@@ -194,18 +191,17 @@ std::ostream& operator <<(std::ostream& out, Board& b) {
 		out << " ---- ---- ---- ---- ---- ---- ---- ----\n";
 		for (int j = 0; j < 8; j++) {
 
-			char c = j + 97; // ascii 97 is a
-
-			std::string square = ""; 
-			square.push_back(c);			// add column
-			square.push_back(i+48);			// add row (ascii 48 is 0)
-
+			Square square = { j + 97, i + 48 };
+			
 			// Figure out color of piece
 			char color = ' '; // no piece is a space
 			TypeofPiece piece = TypeofPiece::_;
 			if (b.boardState[square] != nullptr) {
 				piece = b.boardState[square]->type;
-				b.boardState[square]->isBlack ? color = 'b' : color = 'w'; // black is b white is w
+				if (b.boardState[square]->color == PieceColor::Black)
+					color = 'b';
+				else
+					color = 'w';
 			}
 
 			out << "|";

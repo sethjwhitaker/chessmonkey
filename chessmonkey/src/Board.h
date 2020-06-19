@@ -17,14 +17,14 @@ class Board {
 
 private:
 	
-	std::map<std::string, Piece*> boardState; // Each Location has a piece and a square
+	std::map<Square, Piece*> boardState; // Each Location has a piece and a square
 	Piece *pieces[32]; 
 
 public:
 	Board(); // Set up squares
 	~Board();
 
-	std::map<std::string, Piece*>& getBoardState();
+	std::map<Square, Piece*>& getBoardState();
 	Piece** getPieces();
 
 	void movePiece(Move move);
